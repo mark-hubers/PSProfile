@@ -48,7 +48,7 @@
             1 {"Aborting due to existing profile.";  sleep 45; exit 0}
         }
     }  else {
-        write-host "   [Info]  No existing profile."
+        write-host "   [Info]  No existing profile.  Grab latest profile from the cloud..."
     }
 
     write-host "`n-Downloading Profile from $WebPath_Profile..."
@@ -56,6 +56,10 @@
     $client.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
     $client.DownloadFile($WebPath_Profile, $profile)
 
+    if (Test-Path $profile ) {
+        write-host "   [Info]  Profile downloaded.`n"
+        write-host "Done downloading latest profile.  Please restart a new PowerShell session to pick up the new profile settings."
+    } else {
+        write-host "   [ERROR]  Was not able to download the profile." -BackgroundColor Black -ForegroundColor Red
+    }
 
-    write-host "EOF"
-    sleep 45
