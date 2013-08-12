@@ -48,7 +48,7 @@
 
         switch ($result){
             0 {"Overwriting profile!"}
-            1 {"Aborting due to existing profile.";  sleep 45; exit 0}
+            1 {"Aborting due to existing profile.";  sleep 3; $host.enternestedprompt()}
         }
     }  else {
         write-host "   [Info]  No existing profile.  Grab latest profile from Git."
