@@ -1,14 +1,19 @@
-###
-###
-### (new-object Net.WebClient).DownloadString("https://github.com/mhubers/PSProfile/raw/master/SetupProfile.ps1") | iex 
-###
+##=============================================================================================================================
+##
+##  DESCRIPTION: Setup profile path if needed and then download latest profile.
+##  AUTHOR.....: Mark Hubers
+##
+##  To run it.  Just copy the line below in a PowerShell window.
+##  PS> (new-object Net.WebClient).DownloadString("https://github.com/mhubers/PSProfile/raw/master/SetupProfile.ps1") | iex 
+##
+##=============================================================================================================================
 
 $WebPath_ThisScript = "https://github.com/mhubers/PSProfile/raw/master/SetupProfile.ps1"
 $WebPath_Profile    = "https://github.com/mhubers/PSProfile/raw/master/Microsoft.PowerShell_Profile.ps1"
 
-write-host -ForegroundColor Green "---------------------------------------------"
-write-host -ForegroundColor Green "----      Welcome to profile setup       ----"
-write-host -ForegroundColor Green "---------------------------------------------"
+write-host -ForegroundColor Green "------------------------------------------------------------"
+write-host -ForegroundColor Green "----      Welcome to profile downloader and setup       ----"
+write-host -ForegroundColor Green "------------------------------------------------------------"
 
 write-host "`n-Test execution policy."
 $exePolicy = (Get-ExecutionPolicy)
