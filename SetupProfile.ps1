@@ -1,7 +1,10 @@
 ###
-### https://github.com/mhubers/PSProfile/raw/master/SetupProfile.ps1
+###
 ### (new-object Net.WebClient).DownloadString("https://github.com/mhubers/PSProfile/raw/master/SetupProfile.ps1") | iex 
 ###
+
+    $WebPath_ThisScript = "https://github.com/mhubers/PSProfile/raw/master/SetupProfile.ps1"
+    $WebPath_Profile    = "https://github.com/mhubers/PSProfile/raw/master/Microsoft.PowerShell_Profile.ps1"
 
     write-host -ForegroundColor Green "---------------------------------------------"
     write-host -ForegroundColor Green "----      Welcome to profile setup       ----"
@@ -26,7 +29,7 @@
         write-host "   [Info]  Powershell user folder exist,"    
     } else {
         write-host "   [Warn]  PowerShell user folder not exists.  Creating it now.."
-        New-Item -ItemType directory -Path $profilePath
+        New-Item -ItemType directory -Path $profilePath -Force | out-null
     }
 
     write-host "`n-Test if an existing profile exist or not..."
@@ -46,5 +49,13 @@
         }
     }  else {
         write-host "   [Info]  No existing profile."
-    } 
+    }
+
+    write-host "`n-Downloading Profile from $WebPath_Profile..."
+    $client = (New-Object Net.WebClient)
+    $client.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
+    $client.DownloadFile($WebPath_Profile, $profile)
+
+exit 0
+
 
