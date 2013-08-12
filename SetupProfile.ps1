@@ -10,7 +10,7 @@
     write-host -ForegroundColor Green "----      Welcome to profile setup       ----"
     write-host -ForegroundColor Green "---------------------------------------------"
 
-    write-host "`n-Test execution policy..."
+    write-host "`n-Test execution policy."
     $exePolicy = (Get-ExecutionPolicy)
     if ($exePolicy -match "Restricted|AllSigned") {
         Write-Warning "   Your execution policy is $exePolicy, this means you will not be able to use any script files."
@@ -24,34 +24,37 @@
     $profilePath = Split-Path $profile -Parent
     $profileFile = Split-Path $profile -Leaf
 
-    write-host "`n-Test if user Powershell folder exists ($profilePath)..."
+    write-host "`n-Test if your Powershell folder exists ($profilePath)."
     if (Test-Path $profilePath) {
-        write-host "   [Info]  Powershell user folder exist,"    
+        write-host "   [Info]  Your Powershell folder exist,"    
     } else {
-        write-host "   [Warn]  PowerShell user folder not exists.  Creating it now.."
+        write-host "   [Warn]  Your PowerShell folder does not exists.  Creating it now."
         New-Item -ItemType directory -Path $profilePath -Force | out-null
     }
 
-    write-host "`n-Test if an existing profile exist or not..."
+    write-host "`n-Test if an existing profile exist or not."
     if (Test-Path $profile ) {
         write-host "   [Warn]  You have an existing profile."
 
-        $caption = "Over-write existing profile"
-        $message = "Want to replace it?"
-        $yes = new-Object System.Management.Automation.Host.ChoiceDescription "&Yes","help"
-        $no = new-Object System.Management.Automation.Host.ChoiceDescription "&No","help"
-        $choices = [System.Management.Automation.Host.ChoiceDescription[]]($yas,$no)
-        $answer = $host.ui.PromptForChoice($caption,$message,$choices,0)
+        $title = "Existing profile"
+        $message = "Want to replace your existnig profile?"
+        $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", `
+            "Overwrite your existing profile."
+        $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", `
+            "Retains your existing profile."
+        $options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
 
-        switch ($answer){
+        $result = $host.ui.PromptForChoice($title, $message, $options, 0) 
+
+        switch ($result){
             0 {"Overwriting profile!"}
             1 {"Aborting due to existing profile.";  sleep 45; exit 0}
         }
     }  else {
-        write-host "   [Info]  No existing profile.  Grab latest profile from the cloud..."
+        write-host "   [Info]  No existing profile.  Grab latest profile from Git."
     }
 
-    write-host "`n-Downloading Profile from $WebPath_Profile..."
+    write-host "`n-Downloading Profile from $WebPath_Profile."
     $client = (New-Object Net.WebClient)
     $client.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
     $client.DownloadFile($WebPath_Profile, $profile)
