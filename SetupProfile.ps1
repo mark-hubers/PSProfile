@@ -45,7 +45,7 @@
 
         switch ($answer){
             0 {"Overwriting profile!"}
-            1 {"Aborting due to existing profile."; exit 0}
+            1 {"Aborting due to existing profile.";  sleep 45; exit 0}
         }
     }  else {
         write-host "   [Info]  No existing profile."
@@ -57,3 +57,5 @@
     $client.DownloadFile($WebPath_Profile, $profile)
 
 
+    write-host "EOF"
+    sleep 45
