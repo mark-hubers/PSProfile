@@ -56,6 +56,4 @@
     $client.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
     $client.DownloadFile($WebPath_Profile, $profile)
 
-exit 0
-
 
