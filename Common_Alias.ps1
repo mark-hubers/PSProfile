@@ -11,7 +11,9 @@ function Alias:ProfileDisplayMessage {
 }
 
 	 ### Make aliases to notepad++
-	 if ( path-test "${Env:ProgramFiles(x86)}"
+	 if ( path-test "${Env:ProgramFiles(x86)}" ) {
+
+}
 	 
     Set-Alias whoami Ask-Who
     new-alias grep1 findstr
