@@ -46,7 +46,7 @@ function Alias:ProfileDisplayMessage {
         write-host "--   cleartool.exe detected, created alias ct to cleartool.exe                --" -ForegroundColor Green -BackgroundColor Black
     }
     write-host "--                                                                            --" -ForegroundColor Green -BackgroundColor Black
-    write-host "-- To update to latest profile, PS> Update-Profile -UpdateAllUpdateAll        --" -ForegroundColor Green -BackgroundColor Black	
+    write-host "-- To update to latest profile,  PS> Update-Profile -UpdateAll                --" -ForegroundColor Green -BackgroundColor Black	
     write-host "--------------------------------------------------------------------------------" -ForegroundColor Green -BackgroundColor Black	
 }
 
