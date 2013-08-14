@@ -7,8 +7,7 @@
 	
     
 function Alias:ProfileDisplayMessage {
-    Common:Write-MixColorsHost "---  ~C=Green:ORG~Some helpful aliases~ORG~ ----------------------------------------------------"
-    Common:Write-MixColorsHost "-~C=Green:ORG~  grep  more  head    ~ORG~-"
+
 }
 
     ### Make aliases to notepad++
@@ -20,8 +19,7 @@ function Alias:ProfileDisplayMessage {
         Set-Alias edit    "C:\Program Files\Notepad++\notepad++.exe"
     }
 	 
-    Set-Alias whoami Ask-Who
-    new-alias grep1 findstr
+    new-alias grepf findstr
 	new-alias grep select-string
     
 
