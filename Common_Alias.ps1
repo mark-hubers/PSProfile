@@ -37,17 +37,18 @@
     
 function Alias:ProfileDisplayMessage {
     ### this get display in start of a new PowerShell session.  Part 2 of 2.
-    write-host "--    Grep    -> Select-String              Grepf -> findstr.exe              --" -ForegroundColor Green -BackgroundColor Black
+        write-host "--    Grep    -> Select-String              Grepf -> findstr.exe              --"
+        write-host "--                                                                            --"
 
     if (Test-Path Alias:\ed) {
-        write-host "--   Notepad++ detected, created alias ed,edit,notepad to notepad++.exe       --" -ForegroundColor Green -BackgroundColor Black
+        write-host "--    Notepad++ detected, created alias ed,edit,notepad to notepad++.exe      --"
     }
     if (Test-Path Alias:\ct) {
-        write-host "--   cleartool.exe detected, created alias ct to cleartool.exe                --" -ForegroundColor Green -BackgroundColor Black
+        write-host "--    cleartool.exe detected, created alias ct to cleartool.exe               --"
     }
-    write-host "--                                                                            --" -ForegroundColor Green -BackgroundColor Black
-    write-host "-- To update to latest profile,  PS> Update-Profile -UpdateAll                --" -ForegroundColor Green -BackgroundColor Black	
-    write-host "--------------------------------------------------------------------------------" -ForegroundColor Green -BackgroundColor Black	
+        write-host "--                                                                            --"
+        write-host "-- To update to latest profile,  PS> Update-Profile -UpdateAll                --"
+        write-host "--------------------------------------------------------------------------------"
 }
 
 
