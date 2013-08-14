@@ -4,23 +4,52 @@
 ##  AUTHOR........:  Mark Hubers
 ##
 ##==============================================================================
-	
-    
-function Alias:ProfileDisplayMessage {
-
-}
-
+ 
+    Set-Alias grepf findstr
+	Set-Alias grep select-string
+   
     ### Make aliases to notepad++
-    if ( Test-Path "${Env:ProgramFiles(x86)}" ) {
+    if ( Test-Path "${Env:ProgramFiles(x86)}\Notepad++\notepad++.exe" ) {
         Set-Alias ed      "${Env:ProgramFiles(x86)}\Notepad++\notepad++.exe"
         Set-Alias edit    "${Env:ProgramFiles(x86)}\Notepad++\notepad++.exe"
-    } else {
+        Set-Alias notepad "${Env:ProgramFiles(x86)}\Notepad++\notepad++.exe"
+    } 
+    
+    ### Make aliases to notepad++
+    if ( Test-Path "C:\Program Files\Notepad++\notepad++.exe" ) {
         Set-Alias ed      "C:\Program Files\Notepad++\notepad++.exe"
         Set-Alias edit    "C:\Program Files\Notepad++\notepad++.exe"
-    }
+        Set-Alias notepad "C:\Program Files\Notepad++\notepad++.exe"
+    } 
+
+    ### Make aliases to cleartool
+    if ( Test-Path "C:\Program Files (x86)\IBM\RationalSDLC\ClearCase\bin\cleartool.exe" ) {
+        Set-Alias ct "C:\Program Files (x86)\IBM\RationalSDLC\ClearCase\bin\cleartool.exe"
+    } 
+
+    ### Make aliases to cleartool
+    if ( Test-Path "C:\Program Files\IBM\RationalSDLC\ClearCase\bin\cleartool.exe" ) {
+        Set-Alias ct "C:\Program Files\IBM\RationalSDLC\ClearCase\bin\cleartool.exe"
+    } 
 	 
-    new-alias grepf findstr
-	new-alias grep select-string
+
+
+    
+function Alias:ProfileDisplayMessage {
+    ### this get display in start of a new PowerShell session.  Part 2 of 2.
+    write-host "--   Grep-->Select-String   Grepf-->findstr.exe                               --" -ForegroundColor Green -BackgroundColor Black
+    if (Test-Path Alias:\ed) {
+        write-host "--  Notepad++ detected, created alias ed,edit,notepad to notepad++.exe        --" -ForegroundColor Green -BackgroundColor Black
+    }
+    if (Test-Path Alias:\ct) {
+        write-host "--  cleartool.exe detected, created alias ct to cleartool.exe                 --" -ForegroundColor Green -BackgroundColor Black
+    }
+    write-host "--                                                                            --" -ForegroundColor Green -BackgroundColor Black
+    write-host "-- Note: To update to latest profile, PS> Update-Profile -UpdateAllUpdateAll  --" -ForegroundColor Green -BackgroundColor Black	
+    write-host "--------------------------------------------------------------------------------" -ForegroundColor Green -BackgroundColor Black	
+}
+
+
     
 
 
