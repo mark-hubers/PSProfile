@@ -7,7 +7,8 @@
 	
     
 function Alias:ProfileDisplayMessage {
-    write-host "Common Alias loaded into your environment."
+    Common:Write-MixColorsHost "---  ~C=Green:ORG~Some helpful aliases~ORG~ ----------------------------------------------------"
+    Common:Write-MixColorsHost "-~C=Green:ORG~  grep  more  head    ~ORG~-"
 }
 
     ### Make aliases to notepad++
@@ -22,6 +23,6 @@ function Alias:ProfileDisplayMessage {
     Set-Alias whoami Ask-Who
     new-alias grep1 findstr
 	new-alias grep select-string
-
+    
 
 
