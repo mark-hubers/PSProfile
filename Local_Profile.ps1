@@ -11,7 +11,13 @@ function SystemSpecificProfileDisplayMessage {
 
 
 ### Override Aspect production TFS settings with home TFS Server settings
-    $TFSServer = "http://darkstar:8080/tfs"
+    $TFSServer     = "http://darkstar:8080/tfs"
+    $TFSCollection = "defaultcollection"
+    $TFSProject    = "TestPrj"
+    $TFSFullPath   = "$TFSServerUrl/$TFSCollection"
+
+    
+    # CollectionUrl = 'http://darkstar:8080/tfs/defaultcollection'
 
     
 ### Some emaples what this file can be useful for.  Here I am creating a shortcut to a snapshot.
