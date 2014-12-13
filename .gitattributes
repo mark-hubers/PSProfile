@@ -22,3 +22,5 @@
 *.RTF	 diff=astextplain
 *.ps1  diff=astextplain
 *.psm1  diff=astextplain
+
+*.ps1 set diff
