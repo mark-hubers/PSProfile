@@ -130,6 +130,7 @@
 ##=====================================================================================================
     Set-Alias grepf findstr
 	Set-Alias grep select-string
+    New-Alias which get-command
    
     ### Make aliases to notepad++
     if ( Test-Path "${Env:ProgramFiles(x86)}\Notepad++\notepad++.exe" ) {
@@ -185,6 +186,7 @@ $Lync2013DLL = "C:\Program Files\Microsoft Office\Office15\LyncSDK\Assemblies\De
 ##  Display message to screen.  This is part 3 of 3
 ##=====================================================================================================
         write-host "--    Grep    -> Select-String              Grepf -> findstr.exe              --"
+        write-host "--    which   -> get-command                                                  --"
         write-host "--                                                                            --"
     if (Test-Path Alias:\tf) {
         write-host "--    TFS detected, created alias tf to tf.exe                                --"
@@ -199,7 +201,11 @@ $Lync2013DLL = "C:\Program Files\Microsoft Office\Office15\LyncSDK\Assemblies\De
         write-host "-- To update to latest profile,  PS> Update-Profile -UpdateAll                --"
         write-host "--------------------------------------------------------------------------------"
 
+### Git settings
+	$global:GitPromptSettings.WorkingForegroundColor    = [ConsoleColor]::Yellow
+	$global:GitPromptSettings.UntrackedForegroundColor  = [ConsoleColor]::Yellow
 
+	
 ##=====================================================================================================
 ##  Load system specific profile.
 ##=====================================================================================================
