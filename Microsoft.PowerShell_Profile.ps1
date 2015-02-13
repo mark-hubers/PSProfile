@@ -213,7 +213,6 @@ $Lync2013DLL = "C:\Program Files\Microsoft Office\Office15\LyncSDK\Assemblies\De
 
 ## Note: git clone git@github.com:mhubers/PSProfile %USERPROFILE%\Documents\WindowsPowershell
 
-
 # Load posh-git example profile and change colors
 
 #(Get-Module -ListAvailable posh-git)
