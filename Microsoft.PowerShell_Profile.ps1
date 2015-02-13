@@ -5,8 +5,6 @@
 ##
 ##  To setup a new profile on a new system,  Just copy the line below in a PowerShell window and run it.  It will setup the profile.
 ##  PS> (new-object Net.WebClient).DownloadString("https://github.com/mhubers/PSProfile/raw/master/SetupProfile.ps1") | iex 
-##
-## Note: git clone git@github.com:mhubers/PSProfile %USERPROFILE%\Documents\WindowsPowershell
 ##=============================================================================================================================
 
 ##=====================================================================================================
@@ -74,10 +72,10 @@
         $cwd = (get-location).Path
 	    [array]$cwdt=$()
 	    $cwdi=-1
-	    do {$cwdi=$cwd.indexofany(â€\\â€,$cwdi+1) ; [array]$cwdt+=$cwdi} until($cwdi -eq -1)
+	    do {$cwdi=$cwd.indexofany(”\\”,$cwdi+1) ; [array]$cwdt+=$cwdi} until($cwdi -eq -1)
 
 	    if ($cwdt.count -gt 8) {
-		    $cwd = $cwd.substring(0,$cwdt[0]) + â€œ\..â€ + $cwd.substring($cwdt[$cwdt.count-3])
+		    $cwd = $cwd.substring(0,$cwdt[0]) + “\..” + $cwd.substring($cwdt[$cwdt.count-3])
 	    }
 
 	    $host.UI.RawUI.WindowTitle = $global:TitleMsg
@@ -130,7 +128,6 @@
 ##=====================================================================================================
     Set-Alias grepf findstr
 	Set-Alias grep select-string
-    New-Alias which get-command
    
     ### Make aliases to notepad++
     if ( Test-Path "${Env:ProgramFiles(x86)}\Notepad++\notepad++.exe" ) {
@@ -186,7 +183,6 @@ $Lync2013DLL = "C:\Program Files\Microsoft Office\Office15\LyncSDK\Assemblies\De
 ##  Display message to screen.  This is part 3 of 3
 ##=====================================================================================================
         write-host "--    Grep    -> Select-String              Grepf -> findstr.exe              --"
-        write-host "--    which   -> get-command                                                  --"
         write-host "--                                                                            --"
     if (Test-Path Alias:\tf) {
         write-host "--    TFS detected, created alias tf to tf.exe                                --"
@@ -201,11 +197,6 @@ $Lync2013DLL = "C:\Program Files\Microsoft Office\Office15\LyncSDK\Assemblies\De
         write-host "-- To update to latest profile,  PS> Update-Profile -UpdateAll                --"
         write-host "--------------------------------------------------------------------------------"
 
-### Git settings
-	$global:GitPromptSettings.WorkingForegroundColor    = [ConsoleColor]::Yellow
-	$global:GitPromptSettings.UntrackedForegroundColor  = [ConsoleColor]::Yellow
-
-	
 ##=====================================================================================================
 ##  Load system specific profile.
 ##=====================================================================================================
@@ -218,4 +209,28 @@ $Lync2013DLL = "C:\Program Files\Microsoft Office\Office15\LyncSDK\Assemblies\De
         DownLoadWebFile $WebFile_LocalProfile $LocalProfile
         . $LocalProfile
     }
+	
 
+## Note: git clone git@github.com:mhubers/PSProfile %USERPROFILE%\Documents\WindowsPowershell
+
+
+# Load posh-git example profile and change colors
+
+#(Get-Module -ListAvailable posh-git)
+	. 'C:\Users\Mark\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1'	
+	
+	### Colors = normal, black, red, green, yellow, blue, magenta, cyan, white
+	
+	$global:GitPromptSettings.WorkingForegroundColor    = [ConsoleColor]::Yellow
+	$global:GitPromptSettings.UntrackedForegroundColor  = [ConsoleColor]::Yellow
+	$global:GitPromptSettings.UntrackedBackgroundColor  = [ConsoleColor]::Black
+	$global:GitPromptSettings.IndexForegroundColor = [ConsoleColor]::Yellow
+	$global:GitPromptSettings.DelimBackgroundColor = [ConsoleColor]::Black
+	$global:GitPromptSettings.BranchBackgroundColor = [ConsoleColor]::Black
+	$global:GitPromptSettings.BranchBehindBackgroundColor = [ConsoleColor]::Black
+	$global:GitPromptSettings.BeforeIndexBackgroundColor = [ConsoleColor]::Black
+	$global:GitPromptSettings.WorkingBackgroundColor = [ConsoleColor]::Black
+	$global:GitPromptSettings.DelimBackgroundColor = [ConsoleColor]::Black
+	$global:GitPromptSettings.IndexBackgroundColor = [ConsoleColor]::Black
+	
+	$PSDefaultParameterValues.Add("Out-File:Encoding","ASCII")	
